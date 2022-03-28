@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+class Menu extends StatelessWidget {
+  const Menu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Menü İşlemleri"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/hesaptext");
+              },
+
+              child: Text("Hesap Makinesi Text"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/hesapform");
+              },
+              child: Text("Hesap Makinesi Form"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/widget");
+              },
+              child: Text("Nesneler"),
+
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
