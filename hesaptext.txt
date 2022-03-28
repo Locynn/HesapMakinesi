@@ -1,0 +1,160 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+class HesapText extends StatefulWidget {
+  const HesapText({Key? key}) : super(key: key);
+
+  @override
+  _HesapTextState createState() => _HesapTextState();
+}
+
+class _HesapTextState extends State<HesapText> {
+  final TextEditingController t1 = new TextEditingController();
+  final TextEditingController t2 = new TextEditingController();
+  num sayi1 = 0, sayi2 = 0, sonuc = 0;
+  String yazi = "";
+
+
+  void topla() {
+    setState(() {
+      sayi1 = int.parse(t1.text);
+      sayi2 = int.parse(t2.text);
+      sonuc = sayi1 + sayi2;
+      yazi = "$sayi1 + $sayi2 = $sonuc";
+    });
+  }
+
+  void cikar() {
+    setState(() {
+      sayi1 = int.parse(t1.text);
+      sayi2 = int.parse(t2.text);
+      sonuc = sayi1 - sayi2;
+      yazi = "$sayi1 - $sayi2 = $sonuc";
+    });
+  }
+
+  void carp() {
+    setState(() {
+      sayi1 = int.parse(t1.text);
+      sayi2 = int.parse(t2.text);
+      sonuc = sayi1 * sayi2;
+      yazi = "$sayi1 * $sayi2 = $sonuc";
+    });
+  }
+
+  void bol() {
+    setState(() {
+      sayi1 = int.parse(t1.text);
+      sayi2 = int.parse(t2.text);
+      sonuc = sayi1 / sayi2;
+      yazi = "$sayi1 / $sayi2 = $sonuc";
+    });
+  }
+
+  void temizle() {
+    setState(() {
+      t1.text = " ";
+      t2.text = " ";
+      sonuc = 0;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Hesap MAkinesi Text"),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: "Birinci sayıyı giriniz",
+                labelText: "Birinci sayı",
+                hintStyle: TextStyle(color: Colors.green),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25),
+                  ),
+                ),
+              ),
+              controller: t1,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            TextField(
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: "İkinci sayıyı giriniz",
+                labelText: "İkinci sayı",
+                hintStyle: TextStyle(color: Colors.green),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25),
+                  ),
+                ),
+              ),
+              controller: t2,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MaterialButton(
+                  onPressed: topla,
+                  child: Icon(
+                    FontAwesomeIcons.plus,
+                    color: Colors.red,
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: cikar,
+                  child: Icon(
+                    FontAwesomeIcons.minus,
+                    color: Colors.red,
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: carp,
+                  child: Icon(
+                    FontAwesomeIcons.times,
+                    color: Colors.red,
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: bol,
+                  child: Icon(
+                    FontAwesomeIcons.divide,
+                    color: Colors.red,
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: temizle,
+                  child: Icon(
+                    FontAwesomeIcons.c,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
+            Text(
+              yazi,
+              style: TextStyle(
+                  color: Colors.blue, backgroundColor: Colors.yellow,fontWeight: FontWeight.bold,fontSize: 20),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
