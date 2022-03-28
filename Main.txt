@@ -1,0 +1,25 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:hesapmakinesi/hesapform.dart';
+import 'package:hesapmakinesi/hesaptext.dart';
+import 'package:hesapmakinesi/widgetlar.dart';
+
+import 'menu.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      title: "Hesap Makinesi",
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      onUnknownRoute: (RouteSettings settings) =>
+          MaterialPageRoute(builder: (context) => Menu()),
+      routes: {
+        "/": (context) => Menu(),
+        "/hesaptext": (context) => HesapText(),
+        "/hesapform": (context) => HesapForm(),
+        "/widget": (context) => Widgetlar(),
+      },
+    ),
+  );
+}
