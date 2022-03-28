@@ -1,0 +1,122 @@
+import 'package:flutter/material.dart';
+
+class Widgetlar extends StatefulWidget {
+  const Widgetlar({Key? key}) : super(key: key);
+
+  @override
+  _WidgetlarState createState() => _WidgetlarState();
+}
+
+class _WidgetlarState extends State<Widgetlar> {
+  String _secilenCinsiyet = "kadin";
+  bool ing = false;
+  bool alm = false;
+  var isSwitched = false;
+  String switchYazi = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Nesneler"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
+          children: [
+            Text("lütfen cinsiyet Seçiniz"),
+            ListTile(
+              leading: Radio(
+                value: "kadin",
+                groupValue: _secilenCinsiyet,
+                onChanged: (value) {
+                  setState(() {
+                    _secilenCinsiyet = value as String;
+                  });
+                },
+                activeColor: Colors.yellow,
+              ),
+              title: Text('Kadın'),
+            ),
+            ListTile(
+              leading: Radio(
+                value: "erkek",
+                groupValue: _secilenCinsiyet,
+                onChanged: (value) {
+                  setState(() {
+                    _secilenCinsiyet = value as String;
+                  });
+                },
+              ),
+              title: Text('Erkek'),
+            ),
+            Text(_secilenCinsiyet),
+            SizedBox(
+              height: 30,
+            ),
+            Text("Onaylıyormusunuz"),
+            ListTile(
+              leading: Checkbox(
+                value: ing,
+                onChanged: (bool? value) {
+                  setState(() {
+                    ing = value!;
+                  });
+                },
+              ),
+              title: Text("ingilizce"),
+            ),
+            Text(ing ? "ingilizce seçildi" : "İngilizce iptal edildi"),
+            ListTile(
+              leading: Checkbox(
+                value: alm,
+                onChanged: (bool? value) {
+                  setState(() {
+                    alm = value!;
+                  });
+                },
+              ),
+              title: Text("Almanca"),
+            ),
+            Text(alm ? "ingilizce seçildi" : "İngilizce iptal edildi"),
+            SizedBox(
+              height: 30,
+            ),
+            ListTile(
+              leading: Transform.scale(
+                scale: 3,
+                child: Container(
+                  width: 50,
+                  child: Switch(
+                    onChanged: switchDegisim,
+                    value: isSwitched,
+                    activeColor: Colors.yellow,
+                    activeTrackColor: Colors.blue,
+                    inactiveThumbColor: Colors.red,
+                    inactiveTrackColor: Colors.orange,
+                  ),
+                ),
+              ),
+              title: Text("Ses"),
+            ),
+            Text(switchYazi),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void switchDegisim(bool value) {
+    if (isSwitched==false) {
+      setState(() {
+       isSwitched=true;
+       switchYazi="switch buton açık";
+      });
+    } else {
+      setState(() {
+        isSwitched=false;
+        switchYazi="switch buton kapalı";
+      });
+    }
+  }
+}
