@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+class HesapForm extends StatefulWidget {
+  const HesapForm({Key? key}) : super(key: key);
+
+  @override
+  _HesapFormState createState() => _HesapFormState();
+}
+
+class _HesapFormState extends State<HesapForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Hesap Makinesi Form"),
+      ),
+
+    );
+  }
+}
